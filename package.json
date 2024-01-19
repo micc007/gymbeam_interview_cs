@@ -2,17 +2,19 @@
   "name": "gymbeam_interview_cs",
   "version": "1.0.0",
   "description": "Case study project for interview process at GymBeam",
-  "main": "index.js",
-  "type": "module",
+  "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc"
+    "build": "tsc",
+    "dev": "nodemon src/index.ts"
   },
   "keywords": [],
   "author": "Michal Mitro",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^20.11.5",
+    "nodemon": "^3.0.3",
+    "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
   },
   "dependencies": {
