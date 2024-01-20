@@ -37,7 +37,9 @@ app.get('/', async (req: Request, res: Response) => {
 
     const productId: string[] = [];
     let inputData: productData[] = [];
-    const { startX, startY, startZ }: { startX: number, startY: number, startZ: number} = req.body.startingPosition;
+    const startX: number = req.body.startingPosition.x; 
+    const startY: number = req.body.startingPosition.y; 
+    const startZ: number = req.body.startingPosition.z;
 
     req.body.products.forEach((id: string) => {
         productId.push(id);
@@ -62,20 +64,33 @@ app.get('/', async (req: Request, res: Response) => {
 
     let lowestDist: number = 0; // lowest distance to the next product
     let finalDist: number = 0; // final distance when every product was selected
-    let result: number, xRes: number, yRes: number, zRes: number; // vars for calculating distance 
+    let result: number = 0, xRes: number = 0, yRes: number = 0, zRes: number = 0; // vars for calculating distance 
     let nextId: string = "";
     let filteredData: productData[] = inputData;
     let output: orderItem[] = [];
+    // let pokus: number = 2;
 
     while(filteredData.length > 0) {
+
+        console.log(`lowestDist = ${lowestDist}`)
+
         for(let i: number = 0; i < filteredData.length; i++){
-            xRes = Number(Math.pow((currItem.x - filteredData[i].x),2));
-            yRes = Number(Math.pow((currItem.y - filteredData[i].y),2));
-            zRes = Number(Math.pow((currItem.z - filteredData[i].z),2));
-            result = Math.sqrt(xRes + yRes + zRes);
+            xRes = Number(Math.pow((Number(currItem.x) - Number(filteredData[i].x)),2));
+            yRes = Number(Math.pow((Number(currItem.y) - Number(filteredData[i].y)),2));
+            zRes = Number(Math.pow((Number(currItem.z) - Number(filteredData[i].z)),2));
+            result = Number(Math.sqrt(xRes + yRes + zRes));
+
+            // console.log(`curr - ${currItem.x},${currItem.y},${currItem.z}`)
+            // console.log(`filtered - ${filteredData[i].x},${filteredData[i].y},${filteredData[i].z}`)
+            // console.log(`start - ${startX}, ${startY}, ${startZ}`)
     
-            if(i === 0) lowestDist = result;
-            if(lowestDist > result){
+            console.log(`result = ${result}`)
+
+            // if(i === 0) lowestDist = result;
+
+            // console.log(`xRes = ${xRes}, yRes = ${yRes}, zRes = ${zRes}, lowestDist = ${lowestDist}, result = ${result}`)
+
+            if((lowestDist > result) || (i === 0)){
                 lowestDist = result;
                 currItem = {
                     positionId: filteredData[i].positionId,
@@ -85,11 +100,14 @@ app.get('/', async (req: Request, res: Response) => {
                     productId: filteredData[i].productId,
                     quantity: filteredData[i].quantity
                 }
-                nextId = inputData[i].productId;
+
+                console.log(currItem)
+                nextId = filteredData[i].productId;
             }
         }
 
         finalDist += lowestDist;
+        lowestDist = 0;
 
         // push current closest item to output array
         let outputItem: orderItem = {
@@ -97,16 +115,31 @@ app.get('/', async (req: Request, res: Response) => {
             "positionId": currItem.positionId
         };
         output.push(outputItem);
-
+        
+        console.log("filtered length before - " + filteredData.length);
         filteredData = filteredData.filter((item) => item.productId !== nextId); // remove all instances of an already picked item
+        console.log("filtered length after - " + filteredData.length);
+
+
+        console.log(`lowestDist = ${lowestDist}`)
+        // pokus--;
     }
 
     const finalOutput: outputData = {
         "pickingOrder": output,
-        "distance": finalDist
+        "distance": Math.ceil(finalDist)
     };
 
     res.send(finalOutput);
+
+
+    // TEST
+
+    // console.log("filtered length before - " + filteredData.length);
+    // filteredData = filteredData.filter((item) => item.productId !== "product-1");
+    // console.log("filtered length after - " + filteredData.length);
+
+    // res.send(filteredData);
 
 });
 
