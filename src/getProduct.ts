@@ -1,22 +1,20 @@
-import { fetchData } from "./types";
+import { productData } from "./types";
 
-export const getProduct = (productId: string): Promise<fetchData[]> => {
+export const getProduct = (productId: string): Promise<productData[]> => {
     const url: string = `https://dev.aux.boxpi.com/case-study/products/${productId}/positions`;
-    let item: fetchData[] = [];
-    console.log("funkcia volana");
+    let item: productData[] = [];
 
     return fetch(url, {
         method: "GET",
         headers: {
-            "x-api-key": "MVGBMS0VQI555bTery9qJ91BfUpi53N24SkKMf9Z"
+            "Content-Type": "application/json",
+            "x-api-key": "MVGBMS0VQI555bTery9qJ91BfUpi53N24SkKMf9Z",
         }
     })
     .then((res) => {
-        console.log("return res.json");
         return res.json();
     })
     .then((data) => {
-        console.log("return data");
         item = [...item, ...data];
         return item;
     })

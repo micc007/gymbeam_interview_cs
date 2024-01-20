@@ -7,7 +7,7 @@ export type inputData = {
     }
 }
 
-export type fetchData = {
+export type productData = {
     "positionId": string,
     "x": number,
     "y": number,
