@@ -4,7 +4,7 @@
   "description": "Case study project for interview process at GymBeam",
   "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "vitest",
     "build": "tsc",
     "dev": "nodemon src/index.ts"
   },
@@ -15,7 +15,8 @@
     "@types/node": "^20.11.5",
     "nodemon": "^3.0.3",
     "ts-node": "^10.9.2",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "vitest": "^1.2.1"
   },
   "dependencies": {
     "@types/express": "^4.17.21",
