@@ -37,12 +37,9 @@ To build files to JS, use
 
 Functions:
 
-<<<<<<< HEAD
-calcDist(curr, arr) - accepts current starting position and destination, calculates distance between two positions by using equation -> distance = $\sqrt{(x2-x1)^2 + (y2-y1)^2 + (z2-z1)^2}$
+calcDist(curr, arr) - accepts current starting position and destination, calculates distance between two positions by using equation -> 
+distance = $\sqrt{(x2-x1)^2 + (y2-y1)^2 + (z2-z1)^2}$
 
 calculatePath(inputData, startX, startY, startZ) - accepts input array of fetched products with all their possible positions, calculates shortest path while picking each of the products to the output
 
 getProduct(productId) - accepts one string product ID and fetches product data from API
-=======
-calcDist(curr, arr) - calculates distance between two positions by using equation -> distance = $\sqrt{(x2-x1)^2 + (y2-y1)^2 + (z2-z1)^2}$ 
->>>>>>> 8341f600a27be47454cff7f1d7fd9896a8bb020d
