@@ -1,4 +1,4 @@
-import { productData } from "./types";
+import { productData } from "../types/types";
 
 export const getProduct = (productId: string): Promise<productData[]> => {
     const url: string = `https://dev.aux.boxpi.com/case-study/products/${productId}/positions`;
@@ -22,21 +22,5 @@ export const getProduct = (productId: string): Promise<productData[]> => {
         console.log(err);
         return [];
     });
-    // item = [...item, ...data];
-
-    
-    // console.log(data);
-    // item = [...item, ...data];
-    // console.log(item);
-
-    // .catch((err) => {
-    //     Promise.reject(err);
-    // });
-
-    // const { data, err } = await res.json();
-    // if(err) {
-    //     throw new Error(err.message);
-    // }
-
-    
+  
 }

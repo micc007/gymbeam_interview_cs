@@ -25,5 +25,3 @@ export type outputData = {
     "pickingOrder": orderItem[],
     "distance": number
 }
-
-
