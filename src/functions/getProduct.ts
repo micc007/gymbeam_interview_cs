@@ -8,7 +8,7 @@ export const getProduct = (productId: string): Promise<productData[]> => {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
-            "x-api-key": "MVGBMS0VQI555bTery9qJ91BfUpi53N24SkKMf9Z",
+            "x-api-key": `${process.env.GYMBEAM_API_KEY}`,
         }
     })
     .then((res) => {
