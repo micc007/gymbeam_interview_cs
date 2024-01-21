@@ -37,4 +37,4 @@ To build files to JS, use
 
 Functions:
 
-calcDist(curr, arr) - calculates distance between two positions by using equation -> distance = $sqrt{(x2-x1)^2 + (y2-y1)^2 + (z2-z1)^2}$ 
+calcDist(curr, arr) - calculates distance between two positions by using equation -> distance = $\sqrt{(x2-x1)^2 + (y2-y1)^2 + (z2-z1)^2}$ 
